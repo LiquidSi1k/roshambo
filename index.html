@@ -35,20 +35,26 @@
                 color: white;
                 text-decoration: none;
             }
-            footer {
-                background-color: #333;
-                color: white;
-                text-align: center;
-                padding: 10px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
             main {
                 padding: 20px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                margin-bottom: 70px;
+            }
+            .banner {
+                text-align: center;
+                padding: 20px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .banner img {
+                width: 100%;
+                max-width: 100px;
+                border-radius: 20px;
+                border: 5px solid gray;
             }
             .rules {
                 border-radius: 10px;
@@ -63,6 +69,66 @@
             .fa-linkedin {
                 font-size: 2rem;
             }
+            .choices {
+                display: flex;
+                gap: 20px;
+            }
+            .playerChoice,
+            .computerChoice {
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin: 20px 0;
+                width: 100%;
+                max-width: 100px;
+                position: relative;
+            }
+            .playerChoice p,
+            .computerChoice p {
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: small;
+            }
+            .fa-hand-back-fist,
+            .fa-hand,
+            .fa-hand-peace {
+                font-size: 3rem;
+            }
+            .text-center {
+                text-align: center;
+            }
+            .flex-center {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+            .flex-center a {
+                color: black;
+            }
+            button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 10px;
+                background-color: #333;
+                color: white;
+                cursor: pointer;
+                margin: 10px;
+            }
+            footer {
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+            .fa-arrow-rotate-right {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -70,10 +136,14 @@
             <h1>Roshambo Game</h1>
             <ul>
                 <li>
-                    <a href="#"><i class="fa-solid fa-code"></i></a>
+                    <a href="https://github.com/LiquidSi1k/roshambo" target="_blank"
+                        ><i class="fa-solid fa-code"></i
+                    ></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"
+                        ><i class="fa-brands fa-linkedin"></i
+                    ></a>
                 </li>
             </ul>
         </nav>
@@ -81,6 +151,10 @@
         <main>
             <div class="banner">
                 <h1>Welcome to Rock Paper Scissors Game</h1>
+                <img
+                    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHhoazZscDV3dG10M3oyM2ZoeWh4Z3l6NWFjaXZmeWxxeXdvZTkzZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lArbpi49T4VFIKClXE/giphy.gif"
+                    alt="roshambo game"
+                />
             </div>
 
             <div class="rules">
@@ -91,9 +165,34 @@
                     <li>Paper beats Rock</li>
                 </ol>
             </div>
-            <p>Click the button below to start the game</p>
-            <button onclick="startGame()">Start Game</button>
-            <div></div>
+            <br />
+            <p>Beat the AI with Rock Paper Scissors</p>
+            <div class="choices">
+                <div class="playerChoice">
+                    <i class="fa-regular fa-hand-peace"></i>
+                    <p>player</p>
+                </div>
+                <div class="computerChoice">
+                    <i class="fa-regular fa-hand"></i>
+                    <p>AI</p>
+                </div>
+            </div>
+            <h4 id="gameResult"></h4>
+            <div>
+                <div class="flex-center">
+                    <h3 class="text-center">Choose your weapon</h3>
+                    <i class="fa-solid fa-arrow-rotate-right" onclick="resetPage()"></i>
+                </div>
+                <button onclick="startGame('Rock')">
+                    <i class="fa-regular fa-hand-back-fist"></i>
+                </button>
+                <button onclick="startGame('Paper')">
+                    <i class="fa-regular fa-hand"></i>
+                </button>
+                <button onclick="startGame('Scissors')">
+                    <i class="fa-regular fa-hand-peace"></i>
+                </button>
+            </div>
         </main>
 
         <footer>
@@ -101,8 +200,49 @@
         </footer>
 
         <script>
-            function startGame() {
-                alert("Game started");
+            function welcomeAlert() {
+                alert("Welcome to the ROCK, PAPER, SCISSORS Game!");
+            }
+            document.addEventListener("DOMContentLoaded", welcomeAlert);
+
+            const choices = ["Rock", "Paper", "Scissors"];
+
+            function startGame(choice) {
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+                resultParagraph = document.getElementById("gameResult");
+                playerContainer = document.querySelector(".playerChoice");
+                computerContainer = document.querySelector(".computerChoice");
+                const icons = {
+                    Rock: "fa-regular fa-hand-back-fist",
+                    Paper: "fa-regular fa-hand",
+                    Scissors: "fa-regular fa-hand-peace",
+                };
+
+                playerContainer.innerHTML = `<i class="${icons[choice]}"></i>`;
+
+                computerContainer.innerHTML = `<i class="${icons[computerChoice]}"></i>`;
+
+                if (choice === computerChoice) {
+                    resultParagraph.innerHTML = "It's a tie!";
+                } else if (choice === "Rock" && computerChoice === "Scissors") {
+                    resultParagraph.innerHTML = "You win! Rock beats Scissors";
+                    resultParagraph.style.color = "green";
+                } else if (choice === "Paper" && computerChoice === "Rock") {
+                    resultParagraph.innerHTML = "You win! Paper beats Rock";
+                    resultParagraph.style.color = "green";
+                } else if (choice === "Scissors" && computerChoice === "Paper") {
+                    resultParagraph.innerHTML = "You win! Scissors beats Paper";
+                    resultParagraph.style.color = "green";
+                } else {
+                    resultParagraph.innerHTML = "You lose!";
+                    resultParagraph.style.color = "red";
+                }
+
+                console.log(`Player: ${choice} vs Computer: ${computerChoice}`);
+            }
+
+            function resetPage() {
+                location.reload();
             }
         </script>
     </body>
