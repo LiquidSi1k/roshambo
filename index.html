@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Roshambo</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                font-family: "Montserrat", sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            nav {
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            nav ul {
+                display: flex;
+                list-style-type: none;
+                align-items: center;
+            }
+            li {
+                margin: 0 10px;
+            }
+            a {
+                color: white;
+                text-decoration: none;
+            }
+            footer {
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+            main {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .rules {
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            .rules ol li {
+                margin: 10px;
+                text-align: left;
+                padding-right: 10px;
+            }
+            .fa-linkedin {
+                font-size: 2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <h1>Roshambo Game</h1>
+            <ul>
+                <li>
+                    <a href="#"><i class="fa-solid fa-code"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="banner">
+                <h1>Welcome to Rock Paper Scissors Game</h1>
+            </div>
+
+            <div class="rules">
+                <h3>How to play</h3>
+                <ol>
+                    <li>Rock beats Scissors</li>
+                    <li>Scissors beats Paper</li>
+                    <li>Paper beats Rock</li>
+                </ol>
+            </div>
+            <p>Click the button below to start the game</p>
+            <button onclick="startGame()">Start Game</button>
+            <div></div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 My Roshambo</p>
+        </footer>
+
+        <script>
+            function startGame() {
+                alert("Game started");
+            }
+        </script>
+    </body>
+</html>
