@@ -7,7 +7,6 @@ Welcome to the **Rock-Paper-Scissors** web game! This is a simple and interactiv
 -   Play against the computer.
 -   Simple and intuitive UI.
 -   Responsive design for desktop and mobile.
--   Score tracking for each round.
 
 ## How to Play
 
